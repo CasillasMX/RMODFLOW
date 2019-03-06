@@ -17,7 +17,7 @@ rmf_plot.hpr <- function(hpr,type='scatter') {
     return(  ggplot(dat,aes(x=OBSERVATION.NAME,y=SIMULATED.EQUIVALENT-OBSERVED.VALUE))+
                geom_bar(aes(fill=abs(OBSERVED.VALUE-SIMULATED.EQUIVALENT)),stat='identity')+
                scale_fill_gradientn('Misfit',colours=rev(rainbow(7)),trans='log10')+
-               xlab('Observation name')+ylab('Residuals (simulated equivalent - observed value)')
+               xlab('Observation name')+ylab('Residuals (simulated - observed)')
     )
   }
 }
