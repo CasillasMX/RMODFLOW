@@ -30,8 +30,8 @@ rmf_read_pvl <- function(file = {cat('Please select pvl file ...\n'); file.choos
       pvl_lines <- pvl_lines[-1]
     }
 
-  class(pvl) <- c('pvl','rmf_package')
-  return(pvl)
+   class(pvl) <- c('pvl','rmf_package')
+   return(pvl)
 }
 
 #' @describeIn rmf_read_pvl Deprecated function name
