@@ -35,7 +35,7 @@ rmf_run_sen <- function(file,executable='mf2005',par=NULL,include=NULL)
       rmf_write_pvl(pvl, file=paste0(dir,'/',nam$fname[which(nam$ftype=='PVAL')]))
       rmf_run_modflow(file = paste0(dir,'/',file), executable = executable)
       hpr <- rmf_read_hpr(paste0(dir,'/',nam$fname[which(nam$nunit==hob$iuhobsv)]))
-      sens$dss[,i] <- (hpr$simulated_equivalent-hpr_orig$simulated_equivalent)/(0.01)
+      sens$dss[,i] <- (hpr$SIMULATED.EQUIVALENT-hpr_orig$SIMULATED.EQUIVALENT)/(0.01)
       sens$css[i] <- sqrt(sum(sens$dss[,i]^2)/hob$nh)
    }
    sens$parnam <- pvl$parnam
