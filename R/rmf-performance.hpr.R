@@ -7,9 +7,7 @@
 #' @method rmf_performance hpr
 #' @export
 rmf_performance.hpr <- function(hpr) {
-  obsAndSims <- data.frame(SIMULATED.EQUIVALENT=hpr$SIMULATED.EQUIVALENT, 
-                           OBSERVED.VALUE=hpr$OBSERVED.VALUE,OBSERVATION.NAME=hpr$OBSERVATION.NAME)
-  [which(hpr$SIMULATED.EQUIVALENT!=-888),]
+  obsAndSims <- data.frame(SIMULATED.EQUIVALENT=hpr$SIMULATED.EQUIVALENT, OBSERVED.VALUE=hpr$OBSERVED.VALUE,OBSERVATION.NAME=hpr$OBSERVATION.NAME)[which(hpr$SIMULATED.EQUIVALENT!=-888),]
   observations <- obsAndSims$OBSERVED.VALUE
   predictions <- obsAndSims$SIMULATED.EQUIVALENT
   dry <- 0; if(-888 %in% predictions) dry <- length(which(predictions == -888))
