@@ -38,7 +38,7 @@ rmf_convert_huf_to_grid <- function(values,
   weighted_means <- lapply(which(mask!=0),get_weighted_mean)
   num_grid_array[which(mask!=0)] <- weighted_means
   num_grid_array <- array(num_grid_array,dim=c(dis$nrow,dis$ncol,dis$nlay))
-  return(as.rmf_3d_array(num_grid_array))
+  return(rmf_create_array(num_grid_array))
 }
 
 #' @describeIn rmf_convert_huf_to_grid Deprecated function name
