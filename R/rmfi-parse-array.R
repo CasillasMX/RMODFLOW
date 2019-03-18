@@ -12,20 +12,26 @@ rmfi_parse_array <- function(remaining_lines,nrow,ncol,nlay, ndim = NULL,
    {
       for(k in 1:nlay) 
       { 
-         if(rmfi_remove_empty_strings(strsplit(remaining_lines[1],' ')[[1]])[1] %in% c('CONSTANT', '0')) {
-            if(nlay==1) {
+         if(rmfi_remove_empty_strings(strsplit(remaining_lines[1],' ')[[1]])[1] %in% c('CONSTANT', '0')) 
+         {
+            if(nlay==1) 
+            {
                array[1:length(array)] <- as.numeric(rmfi_remove_empty_strings(strsplit(remaining_lines[1],' |\t')[[1]])[2])
                remaining_lines <- remaining_lines[-1]
-               if(!is.null(ndim)) {
-                  if(ndim == 1) {
+               if(!is.null(ndim)) 
+               {
+                  if(ndim == 1) 
+                  {
                      array <- array(array,dim=nrow*ncol*nlay)
                      class(array) <- 'rmf_1d_array'
-                  } else if(ndim == 2) {
+                  } else if(ndim == 2) 
+                  {
                      array <- array(array, dim = c(nrow, ncol))
                   }
                }
                return(list(array=array,remaining_lines=remaining_lines))
-            } else {
+            } else 
+            {
                array[,,k] <- matrix(as.numeric(rmfi_remove_empty_strings(strsplit(remaining_lines[1],' |\t')[[1]])[2]),nrow=nrow,ncol=ncol)
                remaining_lines <- remaining_lines[-1]
             }
