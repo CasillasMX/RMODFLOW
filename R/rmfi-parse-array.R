@@ -30,7 +30,7 @@ rmfi_parse_array <- function(remaining_lines,nrow,ncol,nlay, ndim = NULL,
                remaining_lines <- remaining_lines[-1]
             }
          }
-         else if(rmfi_remove_empty_strings(strsplit(remaining_lines[1],' ')[[1]])[1] %in% c('INTERNAL') | skip_header)
+         else if(rmfi_remove_empty_strings(strsplit(remaining_lines[1],' ')[[1]])[1] == 'INTERNAL' | skip_header)
          {
             if(!skip_header) remaining_lines <- remaining_lines[-1] 
             nPerLine <- length(as.numeric(rmfi_remove_empty_strings(strsplit(remaining_lines[1],' |\t')[[1]])))
