@@ -12,7 +12,7 @@ rmfi_parse_array <- function(remaining_lines,nrow,ncol,nlay, ndim = NULL,
    {
       for(k in 1:nlay) 
       { 
-         if(rmfi_remove_empty_strings(strsplit(remaining_lines[1],' ')[[1]])[1] %in% c('CONSTANT', '0')) {
+         if(rmfi_remove_empty_strings(strsplit(remaining_lines[1],' ')[[1]])[1] == c('CONSTANT', '0')) {
             if(nlay==1) {
                array[1:length(array)] <- as.numeric(rmfi_remove_empty_strings(strsplit(remaining_lines[1],' |\t')[[1]])[2])
                remaining_lines <- remaining_lines[-1]
