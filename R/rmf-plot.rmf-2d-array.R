@@ -47,11 +47,11 @@ rmf_plot.rmf_2d_array <- function(array,
                                        height=NULL,
                                        title = NULL) {
   if(plot3d) {
-    xyz <- cell_coordinates(dis)
+    xyz <- rmf_cell_coordinates(dis)
     x <- xyz$x[,,1]
     y <- xyz$y[,,1]
     if(!is.null(prj)) {
-      xyz <- convert_grid_to_xyz(x=c(x),y=c(y),prj=prj)
+      xyz <- rmf_convert_grid_to_xyz(x=c(x),y=c(y),prj=prj)
       x[,] <- xyz$x
       y[,] <- xyz$y
     }
@@ -82,7 +82,7 @@ rmf_plot.rmf_2d_array <- function(array,
       positions$y[(seq(4,nrow(positions),4))] <- positions$y[(seq(4,nrow(positions),4))] - yWidth/2
       values <- data.frame(id = ids,value = c(t(array*mask^2)))
       if(!is.null(prj)) {
-        new_positions <- convert_grid_to_xyz(x=positions$x,y=positions$y,prj=prj)
+        new_positions <- rmf_convert_grid_to_xyz(x=positions$x,y=positions$y,prj=prj)
         positions$x <- new_positions$x
         positions$y <- new_positions$y
       }
@@ -123,7 +123,7 @@ rmf_plot.rmf_2d_array <- function(array,
       }
     } else if(type=='contour') {
       if(!is.null(prj)) {
-        new_xy <- convert_grid_to_xyz(x=xy$x,y=xy$y,prj=prj)
+        new_xy <- rmf_convert_grid_to_xyz(x=xy$x,y=xy$y,prj=prj)
         xy$x <- new_xy$x
         xy$y <- new_xy$y
       }
