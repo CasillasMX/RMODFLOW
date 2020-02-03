@@ -8,7 +8,7 @@
 rmf_convert_bud_to_darcy <- function(bud,
                                      dis,
                                      hed = NULL) {
-  thck <- rmf_create_array(cell_dimensions(dis = dis, hed = hed)$z,dim=dim(bud$flow_right_face))
+  thck <- rmf_create_array(rmf_cell_dimensions(dis = dis, hed = hed)$z,dim=dim(bud$flow_right_face))
   delc <- rmf_create_array(rep(dis$delc,dis$ncol),dim=dim(bud$flow_right_face))
   delr <- rmf_create_array(rep(dis$delr,each=dis$nrow),dim=dim(bud$flow_right_face))
   darcy <- list()
