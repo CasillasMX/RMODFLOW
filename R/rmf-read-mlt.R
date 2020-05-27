@@ -33,7 +33,7 @@ rmf_read_mlt <- function(file = {cat('Please select mlt file ...\n'); file.choos
       rm(data_set)
     }
   
-  comment(mlt) <- comments
+  #comment(mlt) <- comments
   class(mlt) <- c('mlt','rmf_package')
   return(mlt)
 }
