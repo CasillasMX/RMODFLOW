@@ -43,6 +43,7 @@ rmf_plot.rmf_2d_array <- function(array,
                                        prj=NULL,
                                        crs=NULL,
                                        alpha=1,
+                                       size=0.5,
                                        plot3d=FALSE,
                                        height=NULL,
                                        title = NULL) {
@@ -114,7 +115,7 @@ rmf_plot.rmf_2d_array <- function(array,
       }
     } else if(type=='grid') {  
       if(add) {
-        return(geom_polygon(aes(x=x,y=y,group=id),data=datapoly,alpha=alpha,colour=ifelse(is.logical(grid),'black',grid),fill=NA))# +
+        return(geom_polygon(aes(x=x,y=y,group=id),data=datapoly,alpha=alpha,size=size,colour=ifelse(is.logical(grid),'black',grid),fill=NA))# +
         #scale_fill_gradientn(colours=colour_palette(nlevels),limits=zlim)) # solve this issue!
       } else {
         return(ggplot(datapoly, aes(x=x, y=y)) +
