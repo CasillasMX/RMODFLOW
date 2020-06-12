@@ -107,7 +107,7 @@ rmf_plot.rmf_2d_array <- function(array,
       }
     } else if(type=='fill_2') {  
       if(add) {
-        return(geom_polygon(aes(x=x,y=y,fill=NA, group=id),data=datapoly,alpha=alpha,size=size, colour = 'black'))# +
+        return(geom_polygon(aes(x=x,y=y,fill=NA),data=datapoly,alpha=alpha,size=size,colour=color))# +
         #scale_fill_gradientn(colours=colour_palette(nlevels),limits=zlim)) # solve this issue!
       } else {
         return(ggplot(datapoly, aes(x=x, y=y)) +
