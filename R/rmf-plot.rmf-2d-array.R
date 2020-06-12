@@ -44,6 +44,7 @@ rmf_plot.rmf_2d_array <- function(array,
                                        crs=NULL,
                                        alpha=1,
                                        size=0.5,
+                                       color='black',
                                        plot3d=FALSE,
                                        height=NULL,
                                        title = NULL) {
@@ -63,12 +64,13 @@ rmf_plot.rmf_2d_array <- function(array,
     alpha <- rep(1,length(col))
     alpha[which(c(t(mask))==0)] <- 0
     if(type=='fill') rgl::surface3d(t(x),t(y),z,color=col,alpha=alpha,back='lines',smooth=FALSE) 
+    if(type=='fill_2') rgl::surface3d(t(x),t(y),z,color=col,alpha=alpha,back='lines',smooth=FALSE) 
     if(type=='grid') rgl::surface3d(t(x),t(y),z,front='lines',alpha=alpha,back='lines',smooth=FALSE) 
   } else {
     xy <- expand.grid(cumsum(dis$delr)-dis$delr/2,sum(dis$delc)-(cumsum(dis$delc)-dis$delc/2))
     names(xy) <- c('x','y')
     mask[which(mask==0)] <- NA
-    if(type %in% c('fill','factor','grid')) {
+    if(type %in% c('fill','fill_2','factor','grid')) {
       ids <- factor(1:(dis$nrow*dis$ncol))
       xWidth <- rep(dis$delr,dis$nrow)
       yWidth <- rep(dis$delc,each=dis$ncol)
@@ -102,6 +104,16 @@ rmf_plot.rmf_2d_array <- function(array,
           geom_polygon(aes(fill=value, group=id),alpha=alpha, colour = ifelse(grid==TRUE,'black',ifelse(grid==FALSE,NA,grid))) +
           scale_fill_gradientn(colours=colour_palette(nlevels),limits=zlim) +
           coord_equal() + ggtitle(title))
+      }
+    } else if(type=='fill_2') {  
+      if(add) {
+        return(geom_polygon(aes(x=x,y=y,fill=NA, group=id),data=datapoly,alpha=alpha,size=size, colour = 'black'))# +
+        #scale_fill_gradientn(colours=colour_palette(nlevels),limits=zlim)) # solve this issue!
+      } else {
+        return(ggplot(datapoly, aes(x=x, y=y)) +
+                 geom_polygon(aes(fill=value, group=id),alpha=alpha, colour = ifelse(grid==TRUE,'black',ifelse(grid==FALSE,NA,grid))) +
+                 scale_fill_gradientn(colours=colour_palette(nlevels),limits=zlim) +
+                 coord_equal() + ggtitle(title))
       }
     } else if(type=='factor') {  
       if(add) {
